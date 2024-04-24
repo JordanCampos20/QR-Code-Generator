@@ -81,7 +81,7 @@ def home_filename_get(filename):
 
 @app.route('/about', methods=['GET'])
 def about_get():
-    return render_template('about.html')
+    return render_template('templates/about.html')
 
 
 if __name__ == "__main__":

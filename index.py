@@ -10,12 +10,12 @@ folder_upload = 'static/uploads/'
 render_folder = 'static/render/'
 
 try:
-    os.makedirs("api/static/uploads/")
+    os.makedirs("static/uploads/")
 except FileExistsError:
     pass
 
 try:
-    os.makedirs("api/static/render/")
+    os.makedirs("static/render/")
 except FileExistsError:
     pass
 

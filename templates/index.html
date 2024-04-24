@@ -1,81 +1,60 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="static/style.css"/>
-        <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-        <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"
-        />
-        <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        crossorigin="anonymous"
-        />
-        <link rel="stylesheet" href="/static/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <title>{% block title %}QR Code Generator{% endblock %}</title>
-    </head>
-    <body>
-        <div class="container">
-            <p><h1 align="center">QRCode Generator</h1></p>
-            <div class="row">
-                <h2>Select an image to create the QR Code</h2>
-                <p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <title>{% block title %}QR Code Generator{% endblock %}</title>
+</head>
+<body class="bg-dark text-secondary">
+    <div class="px-4 py-5 text-center">
+        <div class="py-5">
+            <h1 class="display-5 fw-bold text-white">Gerador de qr code</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="fs-5 mb-4">Selecione a imagem para criar o qr code</p>
+                <div class="row d-grid gap-2 d-sm-flex justify-content-sm-center">
                     {% with messages = get_flashed_messages() %}
-                      {% if messages %}
+                    <div class="col-12">
+                        {% if messages %}
                         <ul>
-                        {% for message in messages %}
-                          <li>{{ message }}</li>
-                        {% endfor %}
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
                         </ul>
-                      {% endif %}
-                    {% endwith %}
-                </p>
-                {% if filename %}
-                    <div>
-                        <p>
-                            <img src="{{ url_for('display_image', filename=filename) }}">
-                        </p>
+                        {% endif %}
                     </div>
-                {% endif %}
-                <form method="post" action="/" enctype="multipart/form-data">
-                    <dl>
-                        <p>
-                            <input type="file" name="file" class="form-control" placeholder="Image" autocomplete="off" required>
-                        </p>
-                        <p>
-                            <input type="text" name="url" class="form-control" placeholder="Link" autocomplete="off" required>
-                        </p>
-                        <p>
-                            <input type="text" name="name" class="form-control" placeholder="Name For QR Code" autocomplete="off" required>
-                        </p>
-                    </dl>
-                    <p>
-                        <input type="submit" value="Submit" class="btn btn-info">
-                    </p>
-                </form>
+                    {% endwith %}
+                    {% if filename %}
+                    <div class="col-12">
+                        <img src="{{ url_for('home_filename_get', filename=filename) }}">
+                    </div>
+                    {% endif %}
+                    <form method="post" action="/" enctype="multipart/form-data">
+                        <input type="file"
+                               name="file"
+                               class="form-control mb-1"
+                               placeholder="imagem"
+                               autocomplete="off"
+                               required>
+                        <input type="text"
+                               name="url"
+                               class="form-control mb-1"
+                               placeholder="url"
+                               autocomplete="off"
+                               required>
+                        <input type="text"
+                               name="name"
+                               class="form-control mb-1"
+                               placeholder="nome para o qrcode"
+                               autocomplete="off"
+                               required>
+                        <button type="submit" value="Submit" class="btn btn-info">Enviar</button>
+                    </form>
+                </div>
             </div>
         </div>
-        <script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"
-      ></script>
-    </body>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
